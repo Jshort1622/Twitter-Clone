@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<section class="content">
+    <header>
+        <img src="/static/img/techis-logo.png" alt="Tech-is Logo" class="tech-is_logo">
+        <h1>
+            Edit
+        </h1>
+    </header>
+        <div class="tweet_post">
+        <div class="post_header">
+        <div class="logo_icon">
+            <img src="{% static 'img/user.png' %}" />
+        </div>
+
+    <section class="post_form posts">
+        <form action="/edit/{{ post.id }}/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="edit_form">
+                <input type="text" name="name" placeholder="Name" required value="{{ post.name }}">
+                <textarea type="text" name="body" placeholder="Tell us anything" required>{{ post.body }}</textarea>
+                {% if post.image.url %}
+                    <img class="post_img" src="{{ post.image.url }}" style="width: 350px">
+                {% endif %}
+                <input class="upload_file" type="file" name="image">
+            </div>
+            <a href="/" class="btn-grey">Cancel</a>
+            <button class="btn" type="submit">Update</button>
+            
+        </form>
+    </section>
+    </div>
+    </div>
+{% endblock %}
